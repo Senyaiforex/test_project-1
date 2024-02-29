@@ -24,13 +24,14 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
 
-    def access_user(self, user: User) -> bool:
+    def access_user(self, username: str) -> bool:
         """
         Метод для определения, есть ли у пользователя
         доступ к данному продукту
-        :param user: инстанс пользователя
+        :param username: никнейм пользователя
         :return: bool
         """
+        user = User.objects.prefetch_related('groups_learn').get(username=username)
         if user.groups_learn.filter(product=self).exists():
             return True
         else:
