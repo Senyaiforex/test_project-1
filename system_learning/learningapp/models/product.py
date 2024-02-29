@@ -24,6 +24,17 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
 
+    def access_user(self, user: User) -> bool:
+        """
+        Метод для определения, есть ли у пользователя
+        доступ к данному продукту
+        :param user: инстанс пользователя
+        :return: bool
+        """
+        if user.groups_learn.filter(product=self).exists():
+            return True
+        else:
+            return False
+
     def __str__(self):
         return self.name
-
