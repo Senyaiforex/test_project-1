@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from learningapp.views import ProductApiView, LessonListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/productslist/', ProductApiView.as_view(), name='product-list'),
+    path('api/v1/products/<int:product_id>/lessons/', LessonListView.as_view(), name='lesson-list'),
 ]
