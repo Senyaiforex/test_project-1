@@ -9,8 +9,7 @@ class GroupLearn(models.Model):
     """
     users = models.ManyToManyField(User,
                                    verbose_name='Пользователи',
-                                   related_name='groups_learn',
-                                   null=True)
+                                   related_name='groups_learn')
     name = models.CharField(verbose_name='Название',
                             max_length=50)
     product = models.ForeignKey(Product,

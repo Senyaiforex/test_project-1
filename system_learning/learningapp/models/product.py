@@ -31,10 +31,12 @@ class Product(models.Model):
         :param user_id: идентификатор пользователя
         :return: bool
         """
-        user = User.objects.prefetch_related('groups_learn').get(pk=user_id)
-        if user.groups_learn.filter(product=self).exists():
-            return True
-        else:
+        if user_id is None:
+            return False
+        try:
+            user = User.objects.prefetch_related('groups_learn').get(pk=user_id)
+            return user.groups_learn.filter(product=self).exists()
+        except User.DoesNotExist:
             return False
 
     def __str__(self):
