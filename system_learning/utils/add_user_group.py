@@ -9,7 +9,7 @@ rep_group = GroupRepository()
 
 def balance_groups(product: Product, user: User, min_count, max_count) -> None:
     """
-    Функция, которая добавляет пользователя в группу если группы не заполнены
+    Функция, которая добавляет пользователя в группу
     или равномерно распределяет пользователей по группам
     :param product: объект класса Product
     :param user: Пользователь
